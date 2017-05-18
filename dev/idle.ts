@@ -1,6 +1,7 @@
 class Idle implements Behavior {
 
-    jibby:Jibby;
+    public jibby:Jibby;
+    private timer:number = 0;
 
     
     constructor(j:Jibby){
@@ -13,11 +14,15 @@ class Idle implements Behavior {
         this.jibby.hygiene -= 0.01;
         this.jibby.food -= 0.02;
         this.jibby.happyness -= 0.015;
+        this.timer++;
         console.log("status updating")
 
         if(this.jibby.food < 0|| this.jibby.hygiene < 0 || this.jibby.happyness < 0){
             console.log("jibby died")
             this.jibby.behavior = new Dead(this.jibby);
+        }
+
+        if(this.timer >= 300){
         }
         
         if(this.jibby.food > 25 && this.jibby.hygiene > 25 && this.jibby.happyness >25){
